@@ -1,0 +1,2 @@
+# cricscor
+Cricket Scoring App
