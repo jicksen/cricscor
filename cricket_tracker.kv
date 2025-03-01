@@ -1,0 +1,138 @@
+#:kivy 1.11.1
+
+<CricketScoreTrackerApp>:
+    MainLayout:
+
+<MainLayout@BoxLayout>:
+    orientation: 'horizontal'
+    padding: 10
+    spacing: 10
+
+    InputFrame:
+        size_hint_x: 0.3
+
+    ScorecardFrame:
+        id: scorecard_frame
+        size_hint_x: 0.7
+
+<InputFrame@GridLayout>:
+    cols: 2
+    padding: 10
+    spacing: 10
+
+    Label:
+        text: "Batting Team:"
+    TextInput:
+        id: batting_team_input
+        text: "Team 1"
+
+    Label:
+        text: "Bowling Team:"
+    TextInput:
+        id: bowling_team_input
+        text: "Team 2"
+
+    Label:
+        text: "Overs:"
+    TextInput:
+        id: overs_input
+        text: "20"
+
+<ScorecardFrame@BoxLayout>:
+    orientation: 'vertical'
+    spacing: 10
+
+    TeamScoreFrame:
+        id: team1_score_frame
+        team_name: app.batting_team
+        runs_label: team1_runs_label
+        wickets_label: team1_wickets_label
+        overs_label: team1_overs_label
+        balls_label: team1_balls_label
+
+    TeamScoreFrame:
+        id: team2_score_frame
+        team_name: app.bowling_team
+        runs_label: team2_runs_label
+        wickets_label: team2_wickets_label
+        overs_label: team2_overs_label
+        balls_label: team2_balls_label
+
+<TeamScoreFrame@GridLayout>:
+    cols: 2
+    size_hint_y: None
+    height: dp(200)
+
+    team_name: ''
+    runs_label: None
+    wickets_label: None
+    overs_label: None
+    balls_label: None
+
+    Label:
+        text: f"{root.team_name} Score:"
+        font_size: '20sp'
+    Label:
+        id: root.runs_label
+        text: "0"
+        font_size: '24sp'
+
+    Label:
+        text: "Wickets:"
+        font_size: '18sp'
+    Label:
+        id: root.wickets_label
+        text: "0"
+        font_size: '18sp'
+
+    Label:
+        text: "Overs:"
+        font_size: '14sp'
+    Label:
+        id: root.overs_label
+        text: "0"
+        font_size: '14sp'
+
+    Label:
+        text: "Balls:"
+        font_size: '14sp'
+    Label:
+        id: root.balls_label
+        text: "0"
+        font_size: '14sp'
+
+<ButtonsFrame@GridLayout>:
+    cols: 3
+    size_hint_y: None
+    height: dp(250)
+    spacing: 5
+
+    Button:
+        text: "Dot Ball"
+        on_press: app.add_dot_ball()
+    Button:
+        text: "Add Run"
+        on_press: app.add_run()
+    Button:
+        text: "Add Wicket"
+        on_press: app.add_wicket()
+
+    Button:
+        text: "Wide"
+        on_press: app.add_extras(1)
+    Button:
+        text: "No Ball"
+        on_press: app.add_extras(1)
+    Button:
+        text: "Bye"
+        on_press: app.add_extras(1)
+
+    Button:
+        text: "Leg Bye"
+        on_press: app.add_extras(1)
+    Button:
+        text: "Four"
+        on_press: app.add_boundary(4)
+    Button:
+        text: "Six"
+        on_press: app.add_boundary(6)
